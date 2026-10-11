@@ -1,0 +1,5 @@
+# テスト用プロファイル。DataSource は PostgresTestSupport が @DynamicPropertySource で注入する。
+proco:
+  security:
+    mode: dev
+    dev-header-tenant: true

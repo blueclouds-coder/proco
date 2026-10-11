@@ -1,0 +1,53 @@
+{
+  "app": {
+    "title": "Proco",
+    "nav": { "home": "Home", "config": "Settings" }
+  },
+  "home": {
+    "title": "My tasks",
+    "kpi": {
+      "pendingApproval": "Pending approval",
+      "returned": "Returned",
+      "dueWithin3Days": "Due within 3 days",
+      "awaitingReply": "Awaiting reply"
+    },
+    "unit": ""
+  },
+  "case": {
+    "title": "Case detail",
+    "placeholder": "Details for case {{id}} will be implemented later."
+  },
+  "config": {
+    "title": "Business parameters",
+    "table": {
+      "key": "Key",
+      "valueType": "Type",
+      "value": "Value",
+      "description": "Description",
+      "updatedAt": "Updated at",
+      "empty": "No parameters"
+    },
+    "form": {
+      "title": "Create / update parameter",
+      "key": "Key",
+      "valueType": "Type",
+      "value": "Value",
+      "submit": "Save",
+      "saved": "Saved"
+    },
+    "validation": {
+      "keyRequired": "Key is required",
+      "keyFormat": "Key may contain only uppercase letters, digits, underscores and dots",
+      "valueRequired": "Value is required",
+      "numberFormat": "Enter a number",
+      "booleanFormat": "Enter true or false",
+      "jsonFormat": "Not valid JSON"
+    },
+    "fallbackNotice": "Field configuration could not be loaded; rendering with defaults (all fields visible)."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry"
+  }
+}

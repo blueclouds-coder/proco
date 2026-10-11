@@ -1,0 +1,36 @@
+# ローカル開発環境。`docker compose up -d` で起動。
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: proco
+      POSTGRES_PASSWORD: proco
+      POSTGRES_DB: proco
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U proco"], interval: 5s, retries: 10 }
+
+  valkey:
+    image: valkey/valkey:8
+    ports: ["6379:6379"]
+
+  activemq:
+    image: apache/activemq-classic:5.18.3
+    ports: ["61616:61616", "8161:8161"]
+
+  opensearch:
+    image: opensearchproject/opensearch:2
+    environment:
+      discovery.type: single-node
+      DISABLE_SECURITY_PLUGIN: "true"
+      OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ports: ["9200:9200"]
+
+  localstack:
+    image: localstack/localstack:3
+    environment:
+      SERVICES: s3,ses,secretsmanager
+    ports: ["4566:4566"]
+
+volumes:
+  pgdata:

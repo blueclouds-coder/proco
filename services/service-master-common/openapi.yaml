@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  title: Proco service-master-common API
+  version: 0.1.0
+  description: |
+    テナント設定（業務パラメータ・フィーチャーフラグ等）を所有するサービスの API。
+    テナントは JWT の `cgid` クレームから解決する。リクエストに company_group_id は含めない。
+servers:
+  - url: http://localhost:8082
+    description: ローカル
+security:
+  - bearerAuth: []
+tags:
+  - name: business-params
+    description: 業務パラメータ（キー＋型付き値）
+paths:
+  /api/v1/config/params:
+    get:
+      tags: [business-params]
+      operationId: listBusinessParams
+      summary: テナントの業務パラメータ一覧
+      responses:
+        '200':
+          description: 一覧（param_key 昇順）
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusinessParamResponse'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '401':
+          $ref: '#/components/responses/Problem'
+  /api/v1/config/params/{key}:
+    put:
+      tags: [business-params]
+      operationId: upsertBusinessParam
+      summary: 業務パラメータの登録・更新（upsert）
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[a-z0-9_.]{1,100}$'
+            examples: [quote.max_suppliers]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessParamRequest'
+      responses:
+        '200':
+          description: 保存後の値
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessParamResponse'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '401':
+          $ref: '#/components/responses/Problem'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    Problem:
+      description: RFC 9457 Problem Details
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+  schemas:
+    ValueType:
+      type: string
+      enum: [STRING, INT, DECIMAL, BOOL, JSON]
+    BusinessParamRequest:
+      type: object
+      required: [valueType, value]
+      properties:
+        valueType:
+          $ref: '#/components/schemas/ValueType'
+        value:
+          description: valueType に対応する JSON 値（STRING→文字列, INT→整数, DECIMAL→数値, BOOL→真偽, JSON→任意）
+        description:
+          type: string
+          maxLength: 500
+    BusinessParamResponse:
+      type: object
+      required: [id, key, valueType, value, updatedAt, version]
+      properties:
+        id:
+          type: string
+          format: uuid
+        key:
+          type: string
+        valueType:
+          $ref: '#/components/schemas/ValueType'
+        value:
+          description: JSON 値
+        description:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        version:
+          type: integer
+    ProblemDetail:
+      type: object
+      required: [status, code, messageKey]
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        instance:
+          type: string
+        code:
+          type: string
+          description: 機械判定用のエラーコード（例 TENANT_MISSING, VALIDATION_ERROR）
+        messageKey:
+          type: string
+          description: i18n メッセージキー
+        errors:
+          type: array
+          items:
+            type: string

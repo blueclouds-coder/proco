@@ -1,0 +1,16 @@
+# ローカル開発用（docker compose の PostgreSQL を使用）。`--spring.profiles.active=local` で有効化。
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/proco
+    username: proco
+    password: proco
+  flyway:
+    enabled: true
+
+server:
+  port: 8082
+
+proco:
+  security:
+    mode: dev
+    dev-header-tenant: true

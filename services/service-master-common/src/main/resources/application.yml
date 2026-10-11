@@ -1,0 +1,33 @@
+# 共通既定値。環境差分は環境変数（Secrets Manager → 環境変数）で注入する。
+spring:
+  application:
+    name: service-master-common
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/proco}
+    username: ${DB_USER:proco_app}
+    password: ${DB_PASSWORD:}
+  flyway:
+    enabled: true
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+proco:
+  security:
+    # jwt: OIDC Resource Server（既定） / dev: 認証なし＋X-Proco-Tenant ヘッダ（ローカル専用）
+    mode: jwt
+    dev-header-tenant: false
+    # OIDC 発行者（jwt モード時のみ必須）。JWT の cgid クレームをテナントとして使う
+    issuer-uri: ${OIDC_ISSUER:}

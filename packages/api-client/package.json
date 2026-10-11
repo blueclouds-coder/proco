@@ -1,0 +1,23 @@
+{
+  "name": "@proco/api-client",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "test": "echo \"@proco/api-client: no tests yet\"",
+    "build": "tsc --noEmit -p tsconfig.json",
+    "generate": "echo \"TODO: openapi-typescript + orval から生成する（openapi/README.md 参照）\" && exit 0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}

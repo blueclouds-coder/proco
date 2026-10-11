@@ -1,0 +1,53 @@
+{
+  "app": {
+    "title": "Proco",
+    "nav": { "home": "ホーム", "config": "設定" }
+  },
+  "home": {
+    "title": "マイタスク",
+    "kpi": {
+      "pendingApproval": "承認待ち",
+      "returned": "差戻し",
+      "dueWithin3Days": "納期3日以内",
+      "awaitingReply": "回答待ち"
+    },
+    "unit": "件"
+  },
+  "case": {
+    "title": "案件詳細",
+    "placeholder": "案件 {{id}} の詳細は今後実装します。"
+  },
+  "config": {
+    "title": "業務パラメータ",
+    "table": {
+      "key": "キー",
+      "valueType": "型",
+      "value": "値",
+      "description": "説明",
+      "updatedAt": "更新日時",
+      "empty": "パラメータがありません"
+    },
+    "form": {
+      "title": "パラメータの登録・更新",
+      "key": "キー",
+      "valueType": "型",
+      "value": "値",
+      "submit": "保存",
+      "saved": "保存しました"
+    },
+    "validation": {
+      "keyRequired": "キーは必須です",
+      "keyFormat": "キーは英大文字・数字・アンダースコア・ドットのみ使用できます",
+      "valueRequired": "値は必須です",
+      "numberFormat": "数値を入力してください",
+      "booleanFormat": "true または false を入力してください",
+      "jsonFormat": "JSON として解釈できません"
+    },
+    "fallbackNotice": "画面項目設定を取得できなかったため、既定の表示（全項目表示）で描画しています。"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "retry": "再試行"
+  }
+}

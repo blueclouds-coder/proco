@@ -1,0 +1,26 @@
+# 列ごとの機密区分（docs/architecture/data-classification.md）。
+# 区分: public / internal / confidential / pii。CI で全テーブル全列が分類済みであることを検査する。
+service: service-master-common
+tables:
+  business_params:
+    id: internal
+    company_group_id: internal
+    param_key: internal
+    value_type: internal
+    value: internal
+    description: internal
+    created_at: internal
+    created_by: internal
+    updated_at: internal
+    updated_by: internal
+    version: internal
+  feature_flags:
+    id: internal
+    company_group_id: internal
+    flag_key: internal
+    enabled: internal
+    created_at: internal
+    created_by: internal
+    updated_at: internal
+    updated_by: internal
+    version: internal

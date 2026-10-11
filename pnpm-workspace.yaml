@@ -1,0 +1,6 @@
+packages:
+  - apps/*
+  - packages/*
+# postinstall を許可する依存（esbuild はバイナリ検証のみ）
+onlyBuiltDependencies:
+  - esbuild
