@@ -32,7 +32,7 @@
         [Bedrock (Tokyo, VPC Endpoint)] ◀─ service-ai
 ```
 
-既存 J2 との差分: `service-approval`（承認を各サービスから切り出し）、`service-integration`（連携基盤を共通化）、`service-ai` の3つが新設。`service-quote` と `service-order` は旧 buyer-order / supplier を業務単位で再編。
+既存システムとの差分: `service-approval`（承認を各サービスから切り出し）、`service-integration`（連携基盤を共通化）、`service-ai` の3つが新設。`service-quote` と `service-order` は旧 buyer-order / supplier を業務単位で再編。
 
 ## テナント分離
 - JWT クレーム `cgid`（company_group_id）→ `TenantContextFilter` が `SET LOCAL app.tenant`

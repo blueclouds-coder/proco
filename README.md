@@ -1,6 +1,6 @@
 # Proco
 
-購買（調達）SaaS。Jienie 2.0 標準機能をもとに UI・業務機能を刷新し、AI 機能を組み込む。
+購買（調達）SaaS。標準業務機能をもとに UI・業務機能を刷新し、AI 機能を組み込む。
 
 - 開発ルール: [CLAUDE.md](CLAUDE.md)
 - 構成: [docs/architecture/overview.md](docs/architecture/overview.md)

@@ -49,7 +49,7 @@ custom_field_defs(id, company_group_id, entity, field_key, label, type, required
 cases.custom_values jsonb   -- {"budget_no":"B-2026-014","meeting_body":"BOARD"}
 ```
 - 検索可能項目は GIN インデックス。帳票・DL・AI出力にも定義ベースで載る
-- 旧 J2 の「管理項目20枠」は移行時にこの定義へマップする
+- 既存システムの「管理項目20枠」は移行時にこの定義へマップする
 
 ## 5. 承認ルール（ルールエンジン）
 ```yaml
