@@ -78,7 +78,8 @@ public class BusinessParamRepository {
                 .set(DESCRIPTION, description)
                 .set(UPDATED_AT, field("now()", OffsetDateTime.class))
                 .set(UPDATED_BY, actor)
-                .set(VERSION, VERSION.plus(inline(1)))
+                // ON CONFLICT DO UPDATE 内では "version" が曖昧になるため表名で修飾する
+                .set(VERSION, field("business_params.version", Integer.class).plus(inline(1)))
                 .execute();
         return findByKey(companyGroupId, paramKey)
                 .orElseThrow(() -> new IllegalStateException("upsert 直後に行が見つかりません: " + paramKey));
