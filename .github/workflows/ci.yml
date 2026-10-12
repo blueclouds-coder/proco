@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "## Maven errors" >> $GITHUB_STEP_SUMMARY
           grep -E '\[ERROR\]|Tests run|FAIL' services/mvn.log | head -80 >> $GITHUB_STEP_SUMMARY
-          grep -E '\[ERROR\]' services/mvn.log | head -40
+          grep -E '\[ERROR\]|Caused by|Tests run:.*Fail' services/mvn.log | grep -v 'Re-run Maven\|-rf :\|Help 1\|For more information' | head -25 | while IFS= read -r l; do echo "::error::${l:0:400}"; done
   web:
     runs-on: ubuntu-latest
     steps:
